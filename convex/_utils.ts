@@ -12,6 +12,5 @@ export const getUserByClerkId = async ({
         .withIndex("by_clerkId", (q) => q.eq("clerkId", clerkId))
         .unique();
 
-    console.log("Retrieved user:", user); // Log the retrieved user
     return user;
 };
