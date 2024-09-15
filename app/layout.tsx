@@ -26,7 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ConvexClientProvider>
-              <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>{children}</TooltipProvider>
             <Toaster richColors />
           </ConvexClientProvider>
         </ThemeProvider>

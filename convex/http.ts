@@ -5,7 +5,7 @@ import type { WebhookEvent } from "@clerk/backend";
 import { Webhook } from "svix";
 
 const validatePayload = async (
-  req: Request
+  req: Request,
 ): Promise<WebhookEvent | undefined> => {
   const payload = await req.text();
 

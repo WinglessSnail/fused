@@ -1,16 +1,16 @@
 import { MutationCtx, QueryCtx } from "./_generated/server";
 
 export const getUserByClerkId = async ({
-    ctx,
-    clerkId,
+  ctx,
+  clerkId,
 }: {
-    ctx: QueryCtx | MutationCtx;
-    clerkId: string;
+  ctx: QueryCtx | MutationCtx;
+  clerkId: string;
 }) => {
-    const user = await ctx.db
-        .query("users")
-        .withIndex("by_clerkId", (q) => q.eq("clerkId", clerkId))
-        .unique();
+  const user = await ctx.db
+    .query("users")
+    .withIndex("by_clerkId", (q) => q.eq("clerkId", clerkId))
+    .unique();
 
-    return user;
+  return user;
 };
