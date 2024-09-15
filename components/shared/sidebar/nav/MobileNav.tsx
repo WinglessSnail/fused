@@ -9,12 +9,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useConversation } from "@/hooks/useConversation";
-import { useNavigations } from "@/hooks/useNavigations";
+import { useNavigation } from "@/hooks/useNavigation";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 const MobileNav = () => {
-  const { paths } = useNavigations();
+  const { paths } = useNavigation();
   const { isActive } = useConversation();
 
   if (isActive) return null;
@@ -45,10 +45,10 @@ const MobileNav = () => {
             );
           })}
           <li>
-            <ThemeToggle />
+            <UserButton />
           </li>
           <li>
-            <UserButton />
+            <ThemeToggle />
           </li>
         </ul>
       </nav>
