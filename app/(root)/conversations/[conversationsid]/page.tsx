@@ -6,14 +6,20 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import { Loader2 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import Header from "./_components/Header";
 import ChatInput from "./_components/input/ChatInput";
 import Body from "./_components/body/Body";
+import RemoveFriendDialog from "./_components/dialogs/RemoveFriendDialog";
 
 const ConversationPage = () => {
   const params = useParams();
   const conversationId = params?.conversationsid;
+
+  const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
+  const [deleteGroupDialogOpen, setDeleteGroupDialogOpen] = useState(false);
+  const [leaveGroupDialogOpen, setLeaveGroupDialogOpen] = useState(false);
+  const [callType, setCallType] = useState<"audio" | "video" | null>(null);
 
   if (!conversationId) {
     return (
@@ -40,6 +46,11 @@ const ConversationPage = () => {
     </p>
   ) : (
     <ConversationContainer>
+      <RemoveFriendDialog
+        conversationId={conversationId}
+        open={removeFriendDialogOpen}
+        setOpen={setRemoveFriendDialogOpen}
+      />
       <Header
         name={
           (conversation.isGroup
@@ -48,6 +59,28 @@ const ConversationPage = () => {
         }
         imageUrl={
           conversation.isGroup ? undefined : conversation.otherMember?.imageUrl
+        }
+        options={
+          conversation.isGroup
+            ? [
+                {
+                  label: "Leave group",
+                  destructive: false,
+                  onClick: () => setLeaveGroupDialogOpen(true),
+                },
+                {
+                  label: "Delete group",
+                  destructive: true,
+                  onClick: () => setDeleteGroupDialogOpen(true),
+                },
+              ]
+            : [
+                {
+                  label: "Remove friend",
+                  destructive: true,
+                  onClick: () => setRemoveFriendDialogOpen(true),
+                },
+              ]
         }
       />
       <Body />

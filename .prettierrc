@@ -3,5 +3,15 @@
   "useTabs": false,
   "semi": true,
   "singleQuote": false,
-  "jsxSingleQuote": false
+  "jsxSingleQuote": false,
+  "parserOptions": {
+    "requireConfig": false,
+    "configExtends": ".",
+    "overrideConfig": false,
+    "babelOptions": {
+      "version": "7.0.0"
+    },
+    "ts": true,
+    "tsx": true
+  }
 }
