@@ -21,7 +21,14 @@ const ConversationPage = () => {
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
   const [deleteGroupDialogOpen, setDeleteGroupDialogOpen] = useState(false);
   const [leaveGroupDialogOpen, setLeaveGroupDialogOpen] = useState(false);
-  const [callType, setCallType] = useState<"audio" | "video" | null>(null);
+  // const [callType, setCallType] = useState<"audio" | "video" | null>(null);
+
+  const parsedConversationId: string | null = conversationId
+    ? (conversationId as string)
+    : null;
+  const conversation = useQuery(api.conversation.get, {
+    id: parsedConversationId as Id<"conversations">,
+  });
 
   if (!conversationId) {
     return (
@@ -31,22 +38,23 @@ const ConversationPage = () => {
     );
   }
 
-  const parsedConversationId: Id<"conversations"> =
-    conversationId as unknown as Id<"conversations">;
+  if (conversation === undefined) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <Loader2 className="h-8 w-8" />
+      </div>
+    );
+  }
 
-  const conversation = useQuery(api.conversation.get, {
-    id: parsedConversationId,
-  });
+  if (conversation === null) {
+    return (
+      <p className="w-full h-full flex items-center justify-center">
+        Conversation not found
+      </p>
+    );
+  }
 
-  return conversation === undefined ? (
-    <div className="w-full h-full flex items-center justify-center">
-      <Loader2 className="h-8 w-8" />
-    </div>
-  ) : conversation === null ? (
-    <p className="w-full h-full flex items-center justify-center">
-      Conversation not found
-    </p>
-  ) : (
+  return (
     <ConversationContainer>
       <RemoveFriendDialog
         conversationId={conversationId}

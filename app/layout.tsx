@@ -4,7 +4,6 @@ import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "@/components/ui/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { Authenticated } from "convex/react";
 
 export const metadata: Metadata = {
   title: "Fused",

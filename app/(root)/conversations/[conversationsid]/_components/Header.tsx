@@ -8,9 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { CircleArrowLeft, Phone, Settings, Video } from "lucide-react";
+import { CircleArrowLeft, Settings } from "lucide-react";
 import Link from "next/link";
-import React, { Dispatch, SetStateAction } from "react";
 
 type Props = {
   imageUrl?: string;

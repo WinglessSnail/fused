@@ -63,7 +63,7 @@ const CreateGroupDialog = () => {
       members: [],
     },
   });
-  const members = form.watch("members", []);
+  const members = form.watch("members");
 
   const unselectedFriends = useMemo(() => {
     return friends
@@ -91,7 +91,7 @@ const CreateGroupDialog = () => {
   return (
     <Dialog>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <Button size="icon" variant="outline">
             <DialogTrigger asChild>
               <CirclePlus />

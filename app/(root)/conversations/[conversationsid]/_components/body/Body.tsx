@@ -18,7 +18,7 @@ type Props = {
     _id?: Id<"users">;
     lastSeenMessageId?: Id<"messages">;
     username?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   }[];
 };
 

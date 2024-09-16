@@ -9,9 +9,7 @@ import DMConversationItem from "./_components/DMconversationItem";
 import CreateGroupDialog from "./_components/CreateGroupDialog";
 import GroupConversationItem from "./_components/GroupConversationItem";
 
-type Props = React.PropsWithChildren<{}>;
-
-const ConversationsLayout = ({ children }: Props) => {
+const ConversationsLayout = ({ children }: { children: React.ReactNode }) => {
   const conversations = useQuery(api.conversations.get);
   return (
     <>

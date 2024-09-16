@@ -19,13 +19,11 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { SendHorizonal } from "lucide-react";
 
-type Props = {};
-
 const chatMessageSchema = z.object({
   content: z.string().min(1, { message: "This field can't be empty" }),
 });
 
-const ChatInput = (props: Props) => {
+const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const { conversationId } = useConversation();
@@ -39,11 +37,17 @@ const ChatInput = (props: Props) => {
     },
   });
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value, selectionStart } = event.target;
     if (selectionStart !== null) {
       form.setValue("content", value);
       // setCursorPosition(selectionStart);
+    }
+  };
+  const handleInputClick = (event: React.MouseEvent<HTMLTextAreaElement>) => {
+    const { selectionStart } = event.currentTarget;
+    if (selectionStart !== null) {
+      // Perform actions related to cursor position if needed
     }
   };
 
@@ -91,7 +95,7 @@ const ChatInput = (props: Props) => {
                       maxRows={3}
                       {...field}
                       onChange={handleInputChange}
-                      onClick={handleInputChange}
+                      onClick={handleInputClick}
                       placeholder="Type a message..."
                       className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-1.5 flex"
                     />

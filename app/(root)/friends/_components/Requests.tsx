@@ -50,7 +50,7 @@ const Request = ({ id, imageUrl, username, email }: Props) => {
               .then(() => {
                 toast.success("Friend request accepted");
               })
-              .catch((error: ConvexError<any>) => {
+              .catch((error: Error) => {
                 toast.error(
                   error instanceof ConvexError
                     ? error.data
@@ -70,7 +70,7 @@ const Request = ({ id, imageUrl, username, email }: Props) => {
               .then(() => {
                 toast.success("Friend request denied");
               })
-              .catch((error: ConvexError<any>) => {
+              .catch((error: Error) => {
                 toast.error(
                   error instanceof ConvexError
                     ? error.data
