@@ -212,7 +212,7 @@ const CreateGroupDialog = () => {
               </Card>
             ) : null}
             <DialogFooter>
-              <Button disabled={pending} type="submit">
+              <Button disabled={isPending} type="submit">
                 Create
               </Button>
             </DialogFooter>

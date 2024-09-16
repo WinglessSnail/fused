@@ -11,6 +11,8 @@ import Header from "./_components/Header";
 import ChatInput from "./_components/input/ChatInput";
 import Body from "./_components/body/Body";
 import RemoveFriendDialog from "./_components/dialogs/RemoveFriendDialog";
+import DeleteGroupDialog from "./_components/dialogs/DeleteGroupDialog";
+import LeaveGroupDialog from "./_components/dialogs/LeaveGroup";
 
 const ConversationPage = () => {
   const params = useParams();
@@ -51,6 +53,16 @@ const ConversationPage = () => {
         open={removeFriendDialogOpen}
         setOpen={setRemoveFriendDialogOpen}
       />
+      <DeleteGroupDialog
+        conversationId={conversationId}
+        open={deleteGroupDialogOpen}
+        setOpen={setDeleteGroupDialogOpen}
+      />
+      <LeaveGroupDialog
+        conversationId={conversationId}
+        open={leaveGroupDialogOpen}
+        setOpen={setLeaveGroupDialogOpen}
+      />
       <Header
         name={
           (conversation.isGroup
@@ -83,7 +95,17 @@ const ConversationPage = () => {
               ]
         }
       />
-      <Body />
+      <Body
+        members={
+          conversation.isGroup
+            ? conversation.otherMembers
+              ? conversation.otherMembers
+              : []
+            : conversation.otherMember
+              ? [conversation.otherMember]
+              : []
+        }
+      />
       <ChatInput />
     </ConversationContainer>
   );
