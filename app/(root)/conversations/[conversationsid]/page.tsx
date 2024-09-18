@@ -21,7 +21,7 @@ const ConversationPage = () => {
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
   const [deleteGroupDialogOpen, setDeleteGroupDialogOpen] = useState(false);
   const [leaveGroupDialogOpen, setLeaveGroupDialogOpen] = useState(false);
-  // const [callType, setCallType] = useState<"audio" | "video" | null>(null);
+  const [callType, setCallType] = useState<"audio" | "video" | null>(null);
 
   const parsedConversationId: string | null = conversationId
     ? (conversationId as string)
@@ -102,6 +102,7 @@ const ConversationPage = () => {
                 },
               ]
         }
+        setCallType={setCallType}
       />
       <Body
         members={
@@ -113,6 +114,8 @@ const ConversationPage = () => {
               ? [conversation.otherMember]
               : []
         }
+        callType={callType}
+        setCallType={setCallType}
       />
       <ChatInput />
     </ConversationContainer>
