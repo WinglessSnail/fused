@@ -37,7 +37,7 @@ const Header = ({ name, imageUrl, options }: Props) => {
       <div className="flex gap-2">
         {options ? (
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Button size="icon" variant="secondary">
                 <Settings />
               </Button>
