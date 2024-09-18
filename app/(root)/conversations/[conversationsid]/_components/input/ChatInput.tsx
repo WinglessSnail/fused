@@ -28,7 +28,7 @@ const chatMessageSchema = z.object({
 
 const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const emojiPickerRef = useRef<any>(null);
+  const emojiPickerRef = useRef<HTMLDivElement>(null);
 
   const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
   const [cursorPosition, setCursorPosition] = useState(0);
@@ -65,7 +65,7 @@ const ChatInput = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         emojiPickerRef.current &&
-        !emojiPickerRef.current.contains(event.target)
+        !emojiPickerRef.current.contains(event.target as Node)
       ) {
         setEmojiPickerOpen(false);
       }

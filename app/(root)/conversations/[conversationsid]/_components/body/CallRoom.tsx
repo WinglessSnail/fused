@@ -23,9 +23,7 @@ export const CallRoom = ({ audio, video, handleDisconnect }: CallRoomProps) => {
 
   const { conversationId } = useConversation();
 
-  const { mutate: createMessage, isPending } = useMutationState(
-    api.message.create,
-  );
+  const { mutate: createMessage } = useMutationState(api.message.create);
 
   useEffect(() => {
     if (!user?.fullName) return;
